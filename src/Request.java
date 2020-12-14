@@ -12,10 +12,17 @@ public class Request extends Thread {
     @Override
     public void run() {
         //sending request do db
-
-
+        Result result= new Result("",0,"");
+        String[] req = request.split(" ");
+        String i = req[1];
+        GetResult getResult =new GetResult(Integer.parseInt(i), result);
+        getResult.connect();
         //and then sending response to client
-        writer.println("[SERVEER] "+request);
-
+        if(result.getNick()==""){
+            writer.println("");
+        }
+        else{
+            writer.println(result.getNick()+" "+result.getScore()+" "+result.getDate());
+        }
     }
 }

@@ -6,7 +6,6 @@ public class MainServer {
     public static void main(String[] args) {
 
         int port = 2761;
-
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Starting server...\n [SERVER]listening on port: " + port);
 

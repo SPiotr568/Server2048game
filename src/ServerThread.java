@@ -3,6 +3,7 @@ import java.net.Socket;
 
 public class ServerThread extends Thread{
     private final Socket socket;
+    private Result result;
 
     public ServerThread(Socket socket) {
         this.socket = socket;
@@ -49,8 +50,10 @@ public class ServerThread extends Thread{
         String score = req[2];
         String date = req[3];
         String time = req[4];
-
+        result = new Result(nick, Integer.parseInt(score), date + " " + time);
         //sending data do db
+        PutResults sendResult =new PutResults(result);
+        sendResult.connect();
 
         //if all is correct send ok
         writer.println("OK");
